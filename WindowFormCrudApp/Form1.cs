@@ -62,17 +62,34 @@ namespace WindowFormCrudApp
 			dgvCustomer.DataSource = _crudContext.Customers.ToList<Customer>();
 		}
 
-		private  void dgvCustomer_DoubleClick(object sender, EventArgs e)
+		private void dgvCustomer_DoubleClick(object sender, EventArgs e)
 		{
-			if(dgvCustomer.CurrentRow.Index != -1)
+			if (dgvCustomer.CurrentRow.Index != -1)
 			{
 				customer.Id = Convert.ToInt32(dgvCustomer.CurrentRow.Cells["id"].Value);
-				customer = _crudContext.Customers.Where(x=>x.Id==customer.Id).FirstOrDefault();
+				customer = _crudContext.Customers.Where(x => x.Id == customer.Id).FirstOrDefault();
 				txtFirstName.Text = customer.FirstName;
 				txtLastName.Text = customer.LastName;
 				txtCity.Text = customer.City;
 				btnSave.Text = "Update";
 				btnDelete.Enabled = true;
+			}
+		}
+
+		private async void btnDelete_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Are you sure you want to delete?","Window Crud App",MessageBoxButtons.YesNo)==DialogResult.Yes)
+			{
+				var entry = _crudContext.Entry(customer);
+				if (entry.State == EntityState.Detached)
+					_crudContext.Customers.Attach(customer);
+
+					_crudContext.Customers.Remove(customer);
+					await _crudContext.SaveChangesAsync();
+					PopulateDataGridView();
+					Clear();
+					MessageBox.Show("Deleted Successfully");
+				
 			}
 		}
 	}
