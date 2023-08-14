@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WindowFormCrudApp.Models;
 
 namespace WindowFormCrudApp
@@ -43,7 +44,11 @@ namespace WindowFormCrudApp
 			customer.FirstName = txtFirstName.Text.Trim();
 			customer.LastName = txtLastName.Text.Trim();
 			customer.City = txtCity.Text.Trim();
-			_crudContext.Customers.AddAsync(customer);
+
+			if (customer.Id == 0)//Insert Operation
+				_crudContext.Customers.Add(customer);
+			else//Update operation
+				_crudContext.Customers.Update(customer);
 			_crudContext.SaveChanges();
 			Clear();
 			PopulateDataGridView();
@@ -57,5 +62,18 @@ namespace WindowFormCrudApp
 			dgvCustomer.DataSource = _crudContext.Customers.ToList<Customer>();
 		}
 
+		private  void dgvCustomer_DoubleClick(object sender, EventArgs e)
+		{
+			if(dgvCustomer.CurrentRow.Index != -1)
+			{
+				customer.Id = Convert.ToInt32(dgvCustomer.CurrentRow.Cells["id"].Value);
+				customer = _crudContext.Customers.Where(x=>x.Id==customer.Id).FirstOrDefault();
+				txtFirstName.Text = customer.FirstName;
+				txtLastName.Text = customer.LastName;
+				txtCity.Text = customer.City;
+				btnSave.Text = "Update";
+				btnDelete.Enabled = true;
+			}
+		}
 	}
 }

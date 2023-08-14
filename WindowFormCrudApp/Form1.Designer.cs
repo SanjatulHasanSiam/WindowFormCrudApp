@@ -33,16 +33,16 @@
 			btnSave = new Button();
 			printDialog1 = new PrintDialog();
 			dgvCustomer = new DataGridView();
+			id = new DataGridViewTextBoxColumn();
+			FirstName = new DataGridViewTextBoxColumn();
+			LastName = new DataGridViewTextBoxColumn();
+			City = new DataGridViewTextBoxColumn();
 			txtLastName = new TextBox();
 			label2 = new Label();
 			txtCity = new TextBox();
 			label3 = new Label();
 			btnDelete = new Button();
 			btnCancel = new Button();
-			id = new DataGridViewTextBoxColumn();
-			FirstName = new DataGridViewTextBoxColumn();
-			LastName = new DataGridViewTextBoxColumn();
-			City = new DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
 			SuspendLayout();
 			// 
@@ -89,6 +89,36 @@
 			dgvCustomer.RowTemplate.Height = 25;
 			dgvCustomer.Size = new Size(400, 426);
 			dgvCustomer.TabIndex = 3;
+			dgvCustomer.DoubleClick += dgvCustomer_DoubleClick;
+			// 
+			// id
+			// 
+			id.DataPropertyName = "id";
+			id.HeaderText = "CustomerID";
+			id.Name = "id";
+			id.ReadOnly = true;
+			id.Visible = false;
+			// 
+			// FirstName
+			// 
+			FirstName.DataPropertyName = "firstName";
+			FirstName.HeaderText = "First Name";
+			FirstName.Name = "FirstName";
+			FirstName.ReadOnly = true;
+			// 
+			// LastName
+			// 
+			LastName.DataPropertyName = "lastName";
+			LastName.HeaderText = "Last Name";
+			LastName.Name = "LastName";
+			LastName.ReadOnly = true;
+			// 
+			// City
+			// 
+			City.DataPropertyName = "city";
+			City.HeaderText = "City";
+			City.Name = "City";
+			City.ReadOnly = true;
 			// 
 			// txtLastName
 			// 
@@ -140,35 +170,6 @@
 			btnCancel.Text = "Cancel";
 			btnCancel.UseVisualStyleBackColor = true;
 			btnCancel.Click += btnCancel_Click;
-			// 
-			// id
-			// 
-			id.DataPropertyName = "id";
-			id.HeaderText = "CustomerID";
-			id.Name = "id";
-			id.ReadOnly = true;
-			id.Visible = false;
-			// 
-			// FirstName
-			// 
-			FirstName.DataPropertyName = "firstName";
-			FirstName.HeaderText = "First Name";
-			FirstName.Name = "FirstName";
-			FirstName.ReadOnly = true;
-			// 
-			// LastName
-			// 
-			LastName.DataPropertyName = "lastName";
-			LastName.HeaderText = "Last Name";
-			LastName.Name = "LastName";
-			LastName.ReadOnly = true;
-			// 
-			// City
-			// 
-			City.DataPropertyName = "city";
-			City.HeaderText = "City";
-			City.Name = "City";
-			City.ReadOnly = true;
 			// 
 			// Form1
 			// 
