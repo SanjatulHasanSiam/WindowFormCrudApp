@@ -39,6 +39,10 @@
 			label3 = new Label();
 			btnDelete = new Button();
 			btnCancel = new Button();
+			id = new DataGridViewTextBoxColumn();
+			FirstName = new DataGridViewTextBoxColumn();
+			LastName = new DataGridViewTextBoxColumn();
+			City = new DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
 			SuspendLayout();
 			// 
@@ -74,11 +78,14 @@
 			// 
 			// dgvCustomer
 			// 
+			dgvCustomer.AllowUserToDeleteRows = false;
 			dgvCustomer.BackgroundColor = SystemColors.ButtonHighlight;
 			dgvCustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			dgvCustomer.Columns.AddRange(new DataGridViewColumn[] { id, FirstName, LastName, City });
 			dgvCustomer.GridColor = SystemColors.ActiveCaption;
 			dgvCustomer.Location = new Point(388, 12);
 			dgvCustomer.Name = "dgvCustomer";
+			dgvCustomer.ReadOnly = true;
 			dgvCustomer.RowTemplate.Height = 25;
 			dgvCustomer.Size = new Size(400, 426);
 			dgvCustomer.TabIndex = 3;
@@ -134,6 +141,35 @@
 			btnCancel.UseVisualStyleBackColor = true;
 			btnCancel.Click += btnCancel_Click;
 			// 
+			// id
+			// 
+			id.DataPropertyName = "id";
+			id.HeaderText = "CustomerID";
+			id.Name = "id";
+			id.ReadOnly = true;
+			id.Visible = false;
+			// 
+			// FirstName
+			// 
+			FirstName.DataPropertyName = "firstName";
+			FirstName.HeaderText = "First Name";
+			FirstName.Name = "FirstName";
+			FirstName.ReadOnly = true;
+			// 
+			// LastName
+			// 
+			LastName.DataPropertyName = "lastName";
+			LastName.HeaderText = "Last Name";
+			LastName.Name = "LastName";
+			LastName.ReadOnly = true;
+			// 
+			// City
+			// 
+			City.DataPropertyName = "city";
+			City.HeaderText = "City";
+			City.Name = "City";
+			City.ReadOnly = true;
+			// 
 			// Form1
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -170,5 +206,9 @@
 		private Label label3;
 		private Button btnDelete;
 		private Button btnCancel;
+		private DataGridViewTextBoxColumn id;
+		private DataGridViewTextBoxColumn FirstName;
+		private DataGridViewTextBoxColumn LastName;
+		private DataGridViewTextBoxColumn City;
 	}
 }

@@ -30,11 +30,12 @@ namespace WindowFormCrudApp
 		{
 			Clear();
 		}
-		
+
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			Clear();
+			PopulateDataGridView();
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
@@ -45,8 +46,16 @@ namespace WindowFormCrudApp
 			_crudContext.Customers.AddAsync(customer);
 			_crudContext.SaveChanges();
 			Clear();
+			PopulateDataGridView();
 			MessageBox.Show("Submitted Successfully");
 
 		}
+
+		void PopulateDataGridView()
+		{
+			dgvCustomer.AutoGenerateColumns = false;
+			dgvCustomer.DataSource = _crudContext.Customers.ToList<Customer>();
+		}
+
 	}
 }
